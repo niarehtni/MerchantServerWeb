@@ -1,0 +1,30 @@
+@import model.Account
+@(form: Form[Option[Account]])(implicit flash: Flash)
+
+@main("商户登陆") {
+    @helper.form(routes.Login.authenticate()) {
+
+        @flash.get("success").map { message =>
+            <p class="success">
+                @message
+            </p>
+        }
+
+        <p>
+            <input type="text" name="name" id="name" value="@form("name").value">
+        </p>
+        <p>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </p>
+        <p>
+            <button type="submit" id="loginbutton">login</button>
+        </p>
+
+        @form.globalError.map { error =>
+            <p class="error">
+                @error.message
+            </p>
+        }
+    }
+
+}

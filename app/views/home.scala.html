@@ -1,0 +1,14 @@
+@(user: model.Account)
+
+@main("Welcome to Play! Login Sample - Restricted Area") {
+
+    <h1>Play! Login Sample - Restricted Area</h1>
+
+    <p>You are logged in as @user.name / @user.name</p>
+
+    <ul>
+        <li><a href="@routes.Login.logout">Logout</a></li>
+        <li><a href="@routes.Home.index">Restricted Area</a></li>
+    </ul>
+
+}
