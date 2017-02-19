@@ -1,0 +1,559 @@
+*{
+    outline: none;
+    font-family: "PingFangSC-Regular","PingFang Light","华文细黑","微软雅黑 Light";
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+table{
+    border-spacing: 0 !important;
+    border-collapse: collapse;
+}
+button:hover{
+    cursor: pointer;
+}
+.container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 62.5%;/*10px*/
+}
+/*侧栏*/
+.sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    color: #fff;
+    /*background-color: hsl(232, 27.9%, 21.8%);*/
+    background-color: #333;
+}
+.sidebar .header{
+    text-align: center;
+    font-size: 2em;
+    line-height: 46px;
+    background-color: hsl(356, 83.5%, 62.0%);
+}
+.sidebar .mask{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+.nav p{
+    padding: 10px 0 10px 15%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1.4em;
+}
+.subnav{
+    padding: 0;
+    font-size: 1.4em;
+}
+.subnav li{
+    padding-left: 25%;
+    list-style: none;
+    line-height: 1.8em;
+}
+.subnav li.active,
+.subnav li:hover,
+.nav p:hover,
+.nav p.active{
+    color: hsl(356, 83.5%, 62.0%);
+    border-right: 5px solid hsl(356, 83.5%, 62.0%);
+    transition: color .5s ease;
+}
+.nav a{
+    color: #fff;
+}
+.nav .active a{
+    color: hsl(356, 83.5%, 62.0%);
+}
+.subnav .active a,
+.subnav li:hover a,
+.nav p.active,
+.nav p:hover a{
+    color: hsl(356, 83.5%, 62.0%);
+    transition: color .5s ease;
+}
+.logo{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: hsl(356, 83.5%, 62.0%);
+    border: none;
+}
+/* End 侧栏*/
+/*右侧主体*/
+.main{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 200px;
+    right: 0;
+    width: calc(100% - 200px);
+}
+.main .mask{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+.main .header,.main .header table{
+    position: relative;
+    width: 100%;
+}
+.main .header td{
+    padding: 0;
+    width: 8%;
+    line-height: 1.6em;
+    text-align: center;
+    background-color: hsl(356, 83.5%, 62.0%);
+}
+.main .header td:first-child{
+    width: 84%;
+}
+.main .search{
+    position: relative;
+}
+.main .search i{
+    position: absolute;
+    left: 2em;
+    font-size: 2em;
+    color: #ccc;
+    line-height: 46px;
+}
+.main .search input{
+    padding: 0;
+    width: 100%;
+    height: 46px;
+    font-size: 1.4em;
+    text-indent: 5em;
+    color: #fff;
+    border: none;
+    background-color: rgba(0,0,0,.1);
+}
+.main .putin,
+.main .putout,
+.main .logout{
+    display: block;
+    width: 100%;
+    height: 46px;
+    font-size: 1.4em;
+    line-height: 46px;
+    color: #fff;
+    cursor: pointer;
+}
+.main .putin{
+    background-color: hsl(356, 83.5%, 62.0%);
+}
+.main .putout{
+    background-color: hsl(166, 80.0%, 39.2%);
+}
+.main .logout{
+    background-color: hsl(247, 65.8%, 67.6%);
+}
+.main .putin input,
+.main .putout input,
+.main .logout input{
+    display: none;
+}
+/*右侧主体的内容区*/
+.content{
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.content i.error{
+    -webkit-animation: shake .5s;
+    animation: shake .5s;
+}
+.error{
+    color: hsl(356, 83.5%, 62.0%) !important;
+}
+@-webkit-keyframes shake {
+    0%{ -webkit-transform: translateX(0)}
+    20%{ -webkit-transform: translateX(1px) translateY(1px)}
+    40%{ -webkit-transform: translateX(-1px) translateY(-1px)}
+    60%{ -webkit-transform: translateX(1px) translateY(1px)}
+    80%{ -webkit-transform: translateX(-1px) translateY(-1px)}
+    100%{ -webkit-transform: translateX(0)}
+}
+@keyframes shake {
+    0%{ transform: translateX(0)}
+    20%{ transform: translateX(1px) translateY(1px)}
+    40%{ transform: translateX(-1px) translateY(-1px)}
+    60%{ transform: translateX(1px) translateY(1px)}
+    80%{ transform: translateX(-1px) translateY(-1px)}
+    100%{ transform: translateX(0)}
+}
+/*登陆框、修改密码框*/
+.loginbar,.password-bar{
+    position: absolute;
+    top: calc(50% - 240px);
+    left: calc(50% - 210px);
+    width: 420px;
+    text-align: center;
+}
+.loginbar label,
+.password-bar label{
+    position: relative;
+    display: block;
+    margin-top: 2em;
+    width: 100%;
+}
+.password-bar p{
+    font-size: 2em;
+}
+.loginbar input,
+.password-bar input{
+    width: 100%;
+    font-size: 1.4em;
+    line-height: 2em;
+    text-indent: 2.4em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.loginbar i,
+.password-bar i{
+    position: absolute;
+    top: -3px;
+    left: .5em;
+    font-size: 2em;
+    line-height: 2em;
+    color: #666;
+}
+.password a{
+    position: relative;
+    top: .5em;
+    font-size: 1.2em;
+    color: hsl(356, 83.5%, 62.0%);
+}
+.vaildcode{
+    margin-top: 1.5em !important;
+    text-align: left;
+}
+.vaildcode input{
+    width: calc(100% - 100px);
+}
+.vaildcode img{
+    position: absolute;
+    top: -1px;
+    right: 0;
+    width: 90px;
+    height: calc(100% - 1px);
+    font-size: 1.4em;
+    border: 1px #ccc solid;
+    cursor: pointer;
+}
+.loginbtn{
+    margin-top: 1.5em;
+    width: 80%;
+    font-size: 1.8em;
+    line-height: 1.8em;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(356, 83.5%, 62.0%);
+}
+/* End 登陆框、修改密码框*/
+/* 报表框*/
+.content .container{
+    position: absolute;
+    top: 2em;
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+}
+.check{
+    position: relative;
+    margin: 0 auto 4em;
+    width: 80%;
+}
+.check ul{
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+.check li{
+    float: left;
+    padding: .5em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 25%;
+    border: 1px #999 solid;
+    border-left: none;
+    font-size: 2em;
+    text-align: center;
+    color: hsl(356, 83.5%, 62.0%);
+    cursor: pointer;
+}
+.check li:first-child{
+    border-left: 1px #999 solid;
+}
+.check li:hover,
+.check li.active{
+    color: #fff;
+    background-color: hsla(356, 83.5%, 62.0%, .9);
+}
+.input-bar{
+    position: relative;
+    top: 2em;
+    margin: auto;
+    width: 600px;
+}
+.loginbar img[alt="web"]{
+    width: 420px;
+}
+.input-bar td{
+    padding: 0;
+}
+.input-bar .text{
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 500px;
+    height: 36px;
+    border: 1px #999 solid;
+    border-radius: 50px 0 0 50px;
+    font-size: 2em;
+    text-indent: 2em;
+}
+.input-bar .date{
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 248px;
+    height: 36px;
+    line-height: 36px;
+    border: 1px #999 solid;
+    border-radius: 50px 0 0 50px;
+    font-size: 2em;
+    text-indent: 2em;
+}
+.input-bar .date:nth-child(2){
+    border-radius: 0 50px 50px 0;
+}
+.input-bar .btn{
+    width: 100px;
+    height: 36px;
+    font-size: 2em;
+    color: #fff;
+    border: 1px #999 solid;
+    border-radius: 0 50px 50px 0;
+    background-color: hsla(356, 83.5%, 62.0%, .9);
+}
+.input-bar .btn.btn-date{
+    width: 98px;
+    border-radius: 50px;
+}
+.result{
+    margin: auto;
+    width: 98%;
+    text-align: center;
+}
+.result th{
+    padding: 10px 0;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: hsla(356, 83.5%, 62.0%, .9);
+}
+.result td,.result th{
+    padding: 6px 0;
+    font-size: 14px;
+    border: 1px #999 solid;
+}
+.chart-bar{
+    margin: 50px auto 50px;
+    text-align: center;
+}
+.summary ul{
+    padding: 0;
+    margin: 50px auto;
+    text-align: center;
+    list-style: none;
+}
+.summary li{
+    display: inline-block;
+    padding: 10px 50px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.summary li:nth-child(1){
+    color: hsl(356, 83.5%, 62.0%);
+}
+.summary li:nth-child(2){
+    color: hsl(166, 80.0%, 39.2%);
+}
+.summary li:nth-child(3){
+    color: hsl(247, 65.8%, 67.6%);
+}
+/* End 报表框*/
+/* End 右侧主体的内容区*/
+/* End 右侧主体*/
+
+.loginbar p,
+.loginbar small,
+.mobile-bg,
+.loginbar img[alt="mbl"]{
+    display: none;
+}
+/*手机样式*/
+@media screen and (max-width: 768px) {
+    .sidebar,
+    .main .header,
+    .loginbar img[alt="web"]{
+        display: none;
+    }
+    .loginbar img[alt="mbl"]{
+        display: inline-block;
+    }
+    .mobile-bg{
+        position: absolute;
+        top:0;
+        display: block;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+    }
+    .main{
+        left: 0;
+        right: 0;
+        width: 100% ;
+    }
+    .loginbar,.password-bar{
+        position: absolute;
+         top: calc(50% - 240px);
+         left: calc(50% - 150px);
+         width: 300px;
+         text-align: center;
+     }
+    .loginbar p{
+        display: block;
+        margin-top: 0;
+        margin-bottom: 1.6em;
+        color: #333;
+        font-size: 1.6em;
+    }
+    .loginbar small{
+        display: inline-block;
+        color: #ccc;
+        font-size: .5em;
+    }
+    .loginbar label,
+    .password-bar label{
+        position: relative;
+        display: block;
+        margin-top: 1.2em;
+        width: auto;
+    }
+    .loginbar input,
+    .password-bar input{
+        width: 80%;
+        font-size: 1em;
+        line-height: 2em;
+        text-indent: 2em;
+        border: 1px solid hsl(228, 8%, 26%);
+        border-radius: 8px;
+        background-color: #fff;
+    }
+    .loginbar i,
+    .password-bar i{
+        position: absolute;
+        top: 6px;
+        left: 2.9em;
+        line-height: 1.2em;
+        color: #999;
+        font-size: 1.4em;
+    }
+    .vaildcode i{
+        position: absolute;
+        top: 10px;
+        left: 6px;
+        font-size: 1.2em;
+        line-height: 0.8em;
+        color: #333;
+    }
+    .password{
+        margin-bottom: 2em;
+    }
+    .password a{
+        position: absolute;
+        top: 2.5em;
+        left: calc(10% + 2em);
+        font-size: 1em;
+        color: hsl(356, 83.5%, 62.0%);;
+    }
+    .vaildcode{
+        margin-left: 29px;
+        margin-top: 4px !important;
+        text-align: left;
+    }
+    .vaildcode input{
+        width: calc(100% - 110px);
+        background-color: #fff;
+    }
+    .checkpwd{
+        display: block;
+        margin-left: -136px;
+        margin-top: 6px !important;
+        text-align: left;
+    }
+    .checkpwd span{
+        margin-left: -170px;
+        color: #ccc;
+        font-size: .8em;
+        margin-top: -6px;
+    }
+    .vaildcode img{
+        position: absolute;
+        top: 4px;
+        right: 28px;
+        width: 60px;
+        height: calc(100% - 10px);
+        border: 1px solid hsl(228, 8%, 26%);
+        cursor: pointer;
+        color: #fff;
+        font-size: .8em;
+        text-align: center;
+    }
+    .loginbtn{
+        padding: 2px 0;
+        margin-top: 1.6em;
+        margin-right: -64px;
+        width: calc(100% - 120px);
+        font-size: 1em;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        background-color: hsl(356, 83.5%, 62.0%);
+    }
+    .mobile-header{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        font-size: 2em;
+        line-height: 2em;
+        text-align: center;
+        color: #fff;
+        background-color: hsl(356, 83.5%, 32.0%);
+    }
+}
+/* End 手机样式*/

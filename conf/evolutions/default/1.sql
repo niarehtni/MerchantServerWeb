@@ -1,13 +1,10 @@
-#Users schema
-
 # --- !Ups
 
-create table ACCOUNT(
-  name VARCHAR NOT NULL PRIMARY KEY,
-  password VARCHAR NOT NULL,
-  role VARCHAR NOT NULL
+CREATE TABLE ACCOUNT(
+  name VARCHAR(10) NOT NULL PRIMARY KEY,
+  password VARCHAR(10) NOT NULL,
+  role VARCHAR(10) NOT NULL
 );
-
 # --- !Downs
 
 drop table ACCOUNT;

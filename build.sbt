@@ -10,7 +10,8 @@ libraryDependencies ++= Seq(cache, ws, specs2 % Test,
   "com.typesafe.play" %% "play-slick" % "2.0.0",
   "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
   "com.h2database" % "h2" % "1.4.187",
-  "jp.t2v" %% "play2-auth" % "0.14.2")
+  "jp.t2v" %% "play2-auth" % "0.14.2",
+  "com.github.axet" % "kaptcha" % "0.0.9")
 
 unmanagedResourceDirectories in Test <+= baseDirectory(_ / "target/web/public/test")
 

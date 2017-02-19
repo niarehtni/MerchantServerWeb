@@ -21,7 +21,10 @@ trait AccountService {
 
   def get(name: String): Future[Option[Account]]
 
-  def authenticate(name: String, password: String): Option[Account]
+  def get(name:String,password:String):Future[Option[Account]]
+
+  def updatePassword(name:String,password:String): Future[Int]
+
 }
 
 class AccountServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile] with AccountService {
@@ -52,7 +55,11 @@ class AccountServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfi
 
   def get(name: String): Future[Option[Account]] = db.run(users.filter(_.name === name).result.headOption)
 
-  def authenticate(name: String, password: String): Option[Account] = {
-    Await.result(db.run(users.filter(p => p.name === name && p.password === password).result.headOption), Duration.Inf)
+  override def get(name: String, password: String): Future[Option[Account]] = {
+    db.run(users.filter(p => p.name === name && p.password === password).result.headOption)
+  }
+
+  override def updatePassword(name:String,password:String): Future[Int] = {
+    db.run(users.filter(p=>p.name === name).map(user=> user.password).update(password))
   }
 }

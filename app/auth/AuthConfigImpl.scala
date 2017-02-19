@@ -1,4 +1,4 @@
-package Auth
+package auth
 
 import controllers.routes
 import jp.t2v.lab.play2.auth.AuthConfig
@@ -61,7 +61,7 @@ trait AuthConfigImpl extends AuthConfig {
     Future.successful(Redirect(routes.Home.index()))
 
   def logoutSucceeded(request: RequestHeader)(implicit ctx: ExecutionContext): Future[Result] =
-    Future.successful(Redirect(routes.Login.login()))
+    Future.successful(Redirect(routes.Login.login()).withNewSession)
 
   def authenticationFailed(request: RequestHeader)(implicit ctx: ExecutionContext): Future[Result] =
     Future.successful(Redirect(routes.Login.login()))

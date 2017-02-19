@@ -5,8 +5,11 @@
 # Home page
 GET         /login               controllers.Login.login
 GET         /logout              controllers.Login.logout
+GET         /captcha             controllers.Login.captcha
 POST        /login               controllers.Login.authenticate
 GET         /home                controllers.Home.index
+GET         /changePassword      controllers.User.changePassword
+GET         /changePasswordSumit controllers.User.changePasswordSubmit
 
 
 # Map static resources from the /public folder to the /assets URL path

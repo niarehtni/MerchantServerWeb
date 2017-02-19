@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
-import Auth.AuthConfigImpl
+import auth.AuthConfigImpl
 import jp.t2v.lab.play2.auth.AuthElement
 import model.Account
 import play.api.mvc.{Controller}
