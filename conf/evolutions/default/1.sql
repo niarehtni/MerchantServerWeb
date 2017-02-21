@@ -5,6 +5,28 @@ CREATE TABLE ACCOUNT(
   password VARCHAR(10) NOT NULL,
   role VARCHAR(10) NOT NULL
 );
+
+CREATE TABLE RESOURCE(
+  resourceId VARCHAR (10) NOT NULL PRIMARY KEY,
+  url VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE ROLE(
+  roleId VARCHAR(10) NOT NULL PRIMARY KEY,
+  roleName VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE POWER(
+  roleId VARCHAR(10) NOT NULL PRIMARY KEY,
+  resourceId VARCHAR (10) NOT NULL PRIMARY KEY
+);
+
 # --- !Downs
+
+
+# --- !Ups
+insert into ACCOUNT values('admin','admin','admin');
+# --- !Downs
+
 
 drop table ACCOUNT;
