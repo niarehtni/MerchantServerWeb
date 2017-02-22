@@ -4,6 +4,7 @@ package controllers
 import javax.inject.Inject
 
 import auth.AuthConfigImpl
+import auth.Role.NormalUser
 import jp.t2v.lab.play2.auth.AuthElement
 import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
@@ -28,11 +29,11 @@ class User @Inject()(protected val accountService: AccountService) extends Contr
     )(FormChangePassword.apply)(FormChangePassword.unapply)
   }
 
-  def changePassword = StackAction(AuthorityKey -> None){ implicit request=>
+  def changePassword = StackAction(AuthorityKey -> NormalUser){ implicit request=>
     Ok(html.changePassword(changePasswordForm))
   }
 
-  def changePasswordSubmit = AsyncStack(AuthorityKey -> None){ implicit request=>
+  def changePasswordSubmit = AsyncStack(AuthorityKey -> NormalUser){ implicit request=>
     changePasswordForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest(html.changePassword(formWithErrors))),
       changePassword => accountService.updatePassword(changePassword.name,changePassword.newPassword).map(_=>

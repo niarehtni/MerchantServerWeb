@@ -1,5 +1,6 @@
 package auth
 
+import auth.Role.{Admin, NormalUser}
 import controllers.routes
 import jp.t2v.lab.play2.auth.AuthConfig
 import model.Account
@@ -35,7 +36,7 @@ trait AuthConfigImpl extends AuthConfig {
     * case object Administrator extends Permission
     * case object NormalUser extends Permission
     */
-  type Authority = None.type
+  type Authority = Role
 
   /**
     * A 'ClassManifest' is used to retrieve an id from the Cache API.
@@ -70,8 +71,9 @@ trait AuthConfigImpl extends AuthConfig {
     Future.successful(Redirect(routes.Login.login()))
   }
 
-  def authorize(user: User, authority: Authority)(implicit ctx: ExecutionContext): Future[Boolean] = Future.successful {
-    // TODO check role
-    true
-  }
+  def authorize(user: User, authority: Authority)(implicit ctx: ExecutionContext): Future[Boolean] = Future.successful((user.role, authority) match {
+    case ("Admin", _) => true
+    case ("NormalUser", NormalUser) => true
+    case _ => false
+  })
 }

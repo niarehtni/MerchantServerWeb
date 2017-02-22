@@ -3,12 +3,20 @@
 # ~~~~
 
 # Home page
+
+#登陆
 GET         /login               controllers.Login.login
+#注销
 GET         /logout              controllers.Login.logout
+#获取验证码
 GET         /captcha             controllers.Login.captcha
+#登陆
 POST        /login               controllers.Login.authenticate
+#主页
 GET         /home                controllers.Home.index
+#修改密码
 GET         /changePassword      controllers.User.changePassword
+#修改密码提交
 GET         /changePasswordSumit controllers.User.changePasswordSubmit
 
 
