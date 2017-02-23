@@ -1,4 +1,4 @@
-@(form: Form[FormAccount])(implicit flash: Flash)
+@(form: Form[FormAccount])(implicit flash: Flash,session: play.api.mvc.Session)
 
 @main("商户登陆") {
 
@@ -45,27 +45,30 @@
                     @message
                 </p>
             }
+
             <img src="@routes.Assets.at("images/logo-a.png")" alt="web"/>
             <img src="@routes.Assets.at("images/logo_z.png")" width="108" alt="mbl"/>
-            <p>中国银行 <small>商户对账平台</small></p>
-            <label for="name" class="user">
-                <i class="fa fa-user"></i>
-                <input id="name" name="name" type="text" placeholder="用户名" value="@form("name").value"/>
+            <p>中国银行
+                <small>商户对账平台</small>
+            </p>
+            <label for="User" class="user">
+                <img src="@routes.Assets.at("images/user-1.png")"/>
+                <input id="name" name="name" type="text" placeholder="用户名"/>
             </label>
-            <label for="password" class="password">
-                <i class="fa fa-lock"></i>
-                <input id="password" name="password" type="password" placeholder="密码"/>
+            <label for="Password" class="password">
+                <img src="@routes.Assets.at("images/lock.png")"/>
+                <input id="password"  name="password" type="password" placeholder="密码"/>
                 <a href="">初始密码为柜员号后6位，请立即修改</a>
             </label>
-            <label for="vaildcode" class="vaildcode">
-                <i class="fa fa-check error"></i>
+            <label for="Vaildcode" class="vaildcode">
+                <img src="@routes.Assets.at("images/lock.png")"/>
                 <input id="verifyCode" name="verifyCode" type="text" placeholder="验证码"/>
-                <img onclick="reload()" name="imgVaildcode" id="imgVaildcode" src="@routes.Login.captcha()" alt="点击刷新">
+                <img id ="imgVaildcode" name="imgVaildcode" class="code-img" src="@routes.Login.captcha()" alt="">
             </label>
+            <button class="loginbtn">登录</button>
             @form.errors.map { error =>
-                <a href="#">@error.message</a>
+                <span class="title">@error.message</span>
             }
-            <button class="loginbtn">登 录</button>
         }
     </div>
 }

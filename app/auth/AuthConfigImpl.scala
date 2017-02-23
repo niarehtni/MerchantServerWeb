@@ -26,7 +26,7 @@ trait AuthConfigImpl extends AuthConfig {
     * A type that represents a user in application.
     * 'User', 'Account' and so on
     */
-  type User = Account
+  type User = AuthUser
 
   /**
     * A type that is defined by every action for authorization.

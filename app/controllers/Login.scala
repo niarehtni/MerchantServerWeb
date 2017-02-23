@@ -44,7 +44,7 @@ class Login @Inject()(protected val accountService: AccountService) extends Cont
           accountService.get(user.name, user.password).flatMap {
             _ match {
               case None => Future.successful(BadRequest(html.login(loginForm.fill(user).withError("name", "用户名密码错误"))))
-              case Some(r) => gotoLoginSucceeded(r.name)
+              case Some(r) => gotoLoginSucceeded(r.name).map(_.withSession("role" -> r.role, "userName" -> r.name))
             }
           } else Future.successful(BadRequest(html.login(loginForm.fill(user).withError("verifyCode", "验证码输入错误"))))
       }
@@ -52,7 +52,7 @@ class Login @Inject()(protected val accountService: AccountService) extends Cont
   }
 
   def logout = Action.async { implicit request =>
-    gotoLogoutSucceeded
+    gotoLogoutSucceeded.map(_.withNewSession)
   }
 
   def captcha = Action { implicit request =>

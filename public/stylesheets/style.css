@@ -6,6 +6,7 @@ body{
     padding: 0;
     margin: 0;
     font-size: 16px;
+    background-color: #fff;
 }
 table{
     border-spacing: 0 !important;
@@ -22,21 +23,24 @@ button:hover{
     right: 0;
     font-size: 62.5%;/*10px*/
 }
+i{
+    cursor: pointer;
+}
 /*侧栏*/
 .sidebar{
     position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
+    width: 250px;
     height: 100%;
     color: #fff;
     /*background-color: hsl(232, 27.9%, 21.8%);*/
     background-color: #333;
 }
 .sidebar .header{
-    text-align: center;
+    padding: 10px 0 10px 15%;
     font-size: 2em;
-    line-height: 46px;
+    line-height: 2em;
     background-color: hsl(356, 83.5%, 62.0%);
 }
 .sidebar .mask{
@@ -46,22 +50,32 @@ button:hover{
     width: 100%;
     background-color: rgba(0,0,0,.5);
 }
+.sidebar .header img{
+    position: relative;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+}
+.sidebar .fa-search,
+.sidebar .fa-chevron-left{
+    display: none;
+}
 .nav p{
     padding: 10px 0 10px 15%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
-    font-size: 1.4em;
+    font-size: 1.6em;
 }
 .subnav{
     padding: 0;
     font-size: 1.4em;
 }
 .subnav li{
-    padding-left: 25%;
+    padding-left: 27%;
     list-style: none;
-    line-height: 1.8em;
+    line-height: 2em;
 }
 .subnav li.active,
 .subnav li:hover,
@@ -70,6 +84,12 @@ button:hover{
     color: hsl(356, 83.5%, 62.0%);
     border-right: 5px solid hsl(356, 83.5%, 62.0%);
     transition: color .5s ease;
+}
+.nav p img{
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
 }
 .nav a{
     color: #fff;
@@ -97,9 +117,9 @@ button:hover{
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 200px;
+    left: 250px;
     right: 0;
-    width: calc(100% - 200px);
+    width: calc(100% - 250px);
 }
 .main .mask{
     position: absolute;
@@ -115,7 +135,6 @@ button:hover{
 .main .header td{
     padding: 0;
     width: 8%;
-    line-height: 1.6em;
     text-align: center;
     background-color: hsl(356, 83.5%, 62.0%);
 }
@@ -124,20 +143,22 @@ button:hover{
 }
 .main .search{
     position: relative;
+    display: block;
 }
-.main .search i{
+.main .search img{
     position: absolute;
+    top: 15px;
     left: 2em;
-    font-size: 2em;
-    color: #ccc;
-    line-height: 46px;
+    width: 30px;
+    height: 30px;
+    opacity: .8;
 }
 .main .search input{
     padding: 0;
     width: 100%;
-    height: 46px;
-    font-size: 1.4em;
-    text-indent: 5em;
+    height: 60px;
+    font-size: 2em;
+    text-indent: 4em;
     color: #fff;
     border: none;
     background-color: rgba(0,0,0,.1);
@@ -147,9 +168,9 @@ button:hover{
 .main .logout{
     display: block;
     width: 100%;
-    height: 46px;
-    font-size: 1.4em;
-    line-height: 46px;
+    height: 60px;
+    font-size: 2em;
+    line-height: 60px;
     color: #fff;
     cursor: pointer;
 }
@@ -164,7 +185,10 @@ button:hover{
 }
 .main .putin input,
 .main .putout input,
-.main .logout input{
+.main .logout input,
+.sidebar.logged-in-page .photo,
+.sidebar .arrow,
+.sidebar .search-btn{
     display: none;
 }
 /*右侧主体的内容区*/
@@ -202,8 +226,8 @@ button:hover{
 .loginbar,.password-bar{
     position: absolute;
     top: calc(50% - 240px);
-    left: calc(50% - 210px);
-    width: 420px;
+    left: calc(50% - 280px);
+    width: 560px;
     text-align: center;
 }
 .loginbar label,
@@ -213,32 +237,46 @@ button:hover{
     margin-top: 2em;
     width: 100%;
 }
+.loginbar .title{
+    position: relative;
+    top: 10px;
+    display: block;
+    font-size: 14px;
+    color: hsl(356, 83.5%, 62.0%);
+}
 .password-bar p{
-    font-size: 2em;
+    font-size: 2.5em;
+}
+.password-bar span.title{
+    position: relative;
+    top: 16px;
+    display: block;
+    font-size: 14px;
+    color: hsl(356, 83.5%, 62.0%);
 }
 .loginbar input,
 .password-bar input{
     width: 100%;
-    font-size: 1.4em;
+    font-size: 1.6em;
     line-height: 2em;
-    text-indent: 2.4em;
+    text-indent: 2em;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.loginbar i,
-.password-bar i{
+.loginbar label img,
+.password-bar label img{
     position: absolute;
-    top: -3px;
+    top: 9px;
     left: .5em;
-    font-size: 2em;
-    line-height: 2em;
+    width: 20px;
+    height: 20px;
     color: #666;
 }
 .password a{
     position: relative;
     top: .5em;
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: hsl(356, 83.5%, 62.0%);
 }
 .vaildcode{
@@ -248,25 +286,34 @@ button:hover{
 .vaildcode input{
     width: calc(100% - 100px);
 }
-.vaildcode img{
+.vaildcode .code-img{
     position: absolute;
-    top: -1px;
+    top: 0;
+    left: inherit;
     right: 0;
     width: 90px;
     height: calc(100% - 1px);
-    font-size: 1.4em;
-    border: 1px #ccc solid;
     cursor: pointer;
 }
 .loginbtn{
     margin-top: 1.5em;
     width: 80%;
-    font-size: 1.8em;
-    line-height: 1.8em;
+    font-size: 2em;
+    line-height: 2em;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: hsl(356, 83.5%, 62.0%);
+}
+.main.logged-in-page .loginbar{
+    display: none;
+}
+.main.logged-in-page .content{
+    margin-top: 200px;
+    content: '欢迎登录-商户对账平台';
+}
+.sidebar.logged-in-page .geren{
+    display: none;
 }
 /* End 登陆框、修改密码框*/
 /* 报表框*/
@@ -291,14 +338,14 @@ button:hover{
 }
 .check li{
     float: left;
-    padding: .5em;
+    padding: 1em;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 25%;
     border: 1px #999 solid;
     border-left: none;
-    font-size: 2em;
+    font-size: 2.5em;
     text-align: center;
     color: hsl(356, 83.5%, 62.0%);
     cursor: pointer;
@@ -317,9 +364,6 @@ button:hover{
     margin: auto;
     width: 600px;
 }
-.loginbar img[alt="web"]{
-    width: 420px;
-}
 .input-bar td{
     padding: 0;
 }
@@ -329,10 +373,10 @@ button:hover{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 500px;
-    height: 36px;
+    height: 50px;
     border: 1px #999 solid;
     border-radius: 50px 0 0 50px;
-    font-size: 2em;
+    font-size: 2.5em;
     text-indent: 2em;
 }
 .input-bar .date{
@@ -341,11 +385,11 @@ button:hover{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 248px;
-    height: 36px;
-    line-height: 36px;
+    height: 50px;
+    line-height: 50px;
     border: 1px #999 solid;
     border-radius: 50px 0 0 50px;
-    font-size: 2em;
+    font-size: 2.5em;
     text-indent: 2em;
 }
 .input-bar .date:nth-child(2){
@@ -353,8 +397,8 @@ button:hover{
 }
 .input-bar .btn{
     width: 100px;
-    height: 36px;
-    font-size: 2em;
+    height: 50px;
+    font-size: 2.5em;
     color: #fff;
     border: 1px #999 solid;
     border-radius: 0 50px 50px 0;
@@ -377,7 +421,7 @@ button:hover{
 }
 .result td,.result th{
     padding: 6px 0;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px #999 solid;
 }
 .chart-bar{
@@ -405,19 +449,52 @@ button:hover{
 .summary li:nth-child(3){
     color: hsl(247, 65.8%, 67.6%);
 }
+@media screen and (min-width: 768px) {
+    .chart-bar canvas{
+        width: 600px;
+        height: 200px;
+    }
+}
 /* End 报表框*/
 /* End 右侧主体的内容区*/
 /* End 右侧主体*/
-
+.selector{
+    width: 100%;
+}
+.selector select{
+    width: 100%;
+    height: 38px;
+    font-size: 1.6em;
+    text-indent: 2em;
+    color: #999;
+}
+.selector img{
+    top: 9px !important;
+}
+option.title{
+    display: none;
+}
+option{
+    padding: 0;
+}
 .loginbar p,
 .loginbar small,
 .mobile-bg,
-.loginbar img[alt="mbl"]{
+.loginbar img[alt="mbl"],
+.search-mobile{
     display: none;
 }
-/*手机样式*/
+/*手机登录样式*/
 @media screen and (max-width: 768px) {
-    .sidebar,
+    .container{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 62.5%;/*10px*/
+    }
+    .sidebar.none,
     .main .header,
     .loginbar img[alt="web"]{
         display: none;
@@ -425,24 +502,23 @@ button:hover{
     .loginbar img[alt="mbl"]{
         display: inline-block;
     }
-    .mobile-bg{
+    .loginbar label img{
         position: absolute;
-        top:0;
-        display: block;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
+        top: 8px;
+        left: 8px;
+        width: 16px;
+        height: 16px;
     }
-    .main{
+    .main.login-page{
         left: 0;
         right: 0;
         width: 100% ;
     }
-    .loginbar,.password-bar{
+    .loginbar{
         position: absolute;
-         top: calc(50% - 240px);
-         left: calc(50% - 150px);
-         width: 300px;
+         top: calc(50% - 280px);
+         left: calc(50% - 120px);
+         width: 240px;
          text-align: center;
      }
     .loginbar p{
@@ -454,7 +530,7 @@ button:hover{
     }
     .loginbar small{
         display: inline-block;
-        color: #ccc;
+        color: #999;
         font-size: .5em;
     }
     .loginbar label,
@@ -464,50 +540,40 @@ button:hover{
         margin-top: 1.2em;
         width: auto;
     }
-    .loginbar input,
-    .password-bar input{
-        width: 80%;
-        font-size: 1em;
+    .loginbar .title{
+        position: fixed;
+        top: inherit;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        font-size: 12px;
+        color: hsl(356, 83.5%, 62.0%);
+    }
+    .loginbar input{
+        width: 100%;
+        font-size: 14px;
         line-height: 2em;
         text-indent: 2em;
-        border: 1px solid hsl(228, 8%, 26%);
-        border-radius: 8px;
+        border: 1px solid #999;
+        border-radius: 50px;
         background-color: #fff;
     }
-    .loginbar i,
-    .password-bar i{
-        position: absolute;
-        top: 6px;
-        left: 2.9em;
-        line-height: 1.2em;
-        color: #999;
-        font-size: 1.4em;
-    }
-    .vaildcode i{
-        position: absolute;
-        top: 10px;
-        left: 6px;
-        font-size: 1.2em;
-        line-height: 0.8em;
-        color: #333;
-    }
     .password{
+        margin-bottom: 1.2em;
+    }
+    .password:nth-child(3){
         margin-bottom: 2em;
     }
     .password a{
-        position: absolute;
-        top: 2.5em;
-        left: calc(10% + 2em);
+        position: relative;
         font-size: 1em;
         color: hsl(356, 83.5%, 62.0%);;
     }
-    .vaildcode{
-        margin-left: 29px;
-        margin-top: 4px !important;
-        text-align: left;
+    .loginbar .vaildcode{
+        margin-top: 1rem !important;
     }
     .vaildcode input{
-        width: calc(100% - 110px);
+        width: calc(100% - 90px);
         background-color: #fff;
     }
     .checkpwd{
@@ -523,26 +589,27 @@ button:hover{
         margin-top: -6px;
     }
     .vaildcode img{
+        border: none;
+    }
+    .vaildcode .code-img{
         position: absolute;
-        top: 4px;
-        right: 28px;
-        width: 60px;
-        height: calc(100% - 10px);
-        border: 1px solid hsl(228, 8%, 26%);
-        cursor: pointer;
+        top: 0;
+        left: inherit;
+        right: 0;
+        width: 80px;
+        height: calc(100% - 2px);
         color: #fff;
-        font-size: .8em;
-        text-align: center;
+        cursor: pointer;
     }
     .loginbtn{
-        padding: 2px 0;
-        margin-top: 1.6em;
-        margin-right: -64px;
-        width: calc(100% - 120px);
-        font-size: 1em;
+        float: right;
+        margin-top: 1.5em;
+        width: calc(100% - 80px);
+        height: 32px;
+        font-size: 14px;
         color: #fff;
         border: none;
-        border-radius: 5px;
+        border-radius: 50px;
         background-color: hsl(356, 83.5%, 62.0%);
     }
     .mobile-header{
@@ -555,5 +622,518 @@ button:hover{
         color: #fff;
         background-color: hsl(356, 83.5%, 32.0%);
     }
+    /*手机登录后*/
+    /* End 手机登录后*/
+    /*走势图*/
+    .chart-bar canvas{
+        width: auto;
+    }
+    /* End 走势图*/
+    /*汇总页面、流水查询*/
+    .sidebar{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 46px;
+        color: #fff;
+        background-color: #333;
+    }
+    .sidebar img{
+        display: none;
+    }
+    .sidebar .header .arrow,
+    .sidebar .header .search-btn{
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: inline-block;
+    }
+    .sidebar .header .search-btn{
+        top: 10px;
+        left: inherit;
+        right: 12px;
+        cursor: pointer;
+    }
+    .sidebar .header{
+        padding: 0;
+        height: 100%;
+        font-size: 18px;
+        line-height: 46px;
+        color: #fff;
+        text-align: center;
+        background: none;
+    }
+    .sidebar .nav,
+    .sidebar .logo{
+        display: none;
+    }
+    .main{
+        top: 0;
+        left: 1em;
+        right: 1em;
+        z-index: -1;
+        width: calc(100% - 2em);
+        transition: top .5s cubic-bezier(.11,.46,.45,1.63);
+    }
+    .main.active{
+        top: 45px;
+    }
+    .main.active .header{
+        display: block;
+    }
+    .main .header table tr td{
+        width: 100%;
+        background: none;
+    }
+    .main .search{
+        width: 100%;
+        font-size: 14px;
+    }
+    .main .search .search-mobile{
+        position: absolute;
+        top: 7px;
+        left: 0;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+    }
+    .main .search input{
+        padding: 0;
+        margin-left: -1em;
+        width: calc(100% + 2em);
+        height: 36px;
+        font-size: 14px;
+        text-indent: 3em;
+        color: #000;
+        border: 1px solid #f2f2f2;
+        background-color: #fff;
+        box-sizing: border-box;
+    }
+    .main .header table tr td:not(:first-child){
+        display: none;
+    }
+    .content .container{
+        position: static;
+        display: block;
+        width: 100%;
+    }
+    .summary ul{
+        padding: 0;
+        margin: 20px auto;
+        list-style: none;
+    }
+    .summary li{
+        display: block;
+        margin-top: 8px;
+        padding: 8px 16px;
+        font-size: 16px;
+        line-height: 24px;
+        color: #666;
+        border: 1px hsl(356, 83.5%, 62.0%) solid;
+        border-radius: 24px;
+    }
+    .summary li:nth-child(1){
+        border: 1px hsl(356, 83.5%, 62.0%) solid;
+    }
+    .summary li:nth-child(2){
+        border: 1px hsl(166, 80.0%, 39.2%) solid;
+    }
+    .summary li:nth-child(3){
+        border: 1px hsl(247, 65.8%, 67.6%) solid;
+    }
+    .summary li:nth-child(1).active{
+        font-weight: 500;
+        color: #fff;
+        background-color: hsl(356, 83.5%, 62.0%);
+    }
+    .summary li:nth-child(2).active{
+        font-weight: 500;
+        color: #fff;
+        background-color: hsl(166, 80.0%, 39.2%);
+    }
+    .summary li:nth-child(3).active{
+        font-weight: 500;
+        color: #fff;
+        background-color: hsl(247, 65.8%, 67.6%);
+    }
+    .table-box{
+        display: block;
+        overflow: auto;
+        margin-top: 0;
+    }
+    .result tr{
+        display: table-cell;
+        font-size: 14px;
+        word-break: keep-all;
+        border: 1px #ccc solid;
+        border-left: none;
+    }
+    .result tr th,
+    .result tr td{
+        display: table-row;
+        line-height: 2em;
+        word-break: keep-all;
+        border: none;
+        border-bottom: 1px #ccc dashed;
+    }
+    .result tr:not(:first-child){
+        padding: 6px 10px;
+        letter-spacing: 1px;
+    }
+    .result tr:nth-child(1){
+        padding: 6px;
+        border: 1px hsl(356, 83.5%, 62.0%) solid;
+        background-color: hsl(356, 83.5%, 62.0%);
+    }
+    .result tr th{
+        color: #fff;
+        background-color: hsl(356, 83.5%, 62.0%);
+    }
+    .check{
+        margin-bottom: 0;
+        width: 100%;
+    }
+    .check ul{
+        padding: 0;
+        width: 100%;
+        list-style: none;
+    }
+    .check li{
+        display: inline-block;
+        float: left;
+        margin-top: 8px;
+        padding: 8px 16px;
+        width: 50%;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #666;
+        border: 1px hsl(356, 83.5%, 62.0%) solid;
+        box-sizing: border-box;
+    }
+    .check li:hover{
+        background: none;
+        color: #333;
+    }
+    .check li:nth-child(odd){
+        border-radius: 50px 0 0 50px;
+    }
+    .check li:nth-child(even){
+        border-radius: 0 50px 50px 0;
+    }
+    .check li:nth-child(1){
+        border: 1px hsl(356, 83.5%, 62.0%) solid;
+        border-right: 1px hsl(356, 83.5%, 62.0%) solid;
+    }
+    .check li:nth-child(2){
+        border: 1px hsl(166, 80.0%, 39.2%) solid;
+        border-left: none;
+    }
+    .check li:nth-child(3){
+        border: 1px hsl(247, 65.8%, 67.6%) solid;
+        border-right: 1px hsl(247, 65.8%, 67.6%) solid;
+    }
+    .check li:nth-child(4){
+        border: 1px #999 solid;
+        border-left: none;
+    }
+    .check li:nth-child(1).active{
+        color: #fff;
+        background-color: hsla(356, 83.5%, 62.0%, .9);
+    }
+    .check li:nth-child(2).active{
+        color: #fff;
+        background-color: hsla(166, 80.0%, 39.2%, .9);
+    }
+    .check li:nth-child(3).active{
+        color: #fff;
+        background-color: hsla(247, 65.8%, 67.6%, .9);
+    }
+    .check li:nth-child(4).active{
+        color: #fff;
+        border: 1px #666 solid;
+        background-color: #666;
+    }
+    .input-bar{
+        position: relative;
+        top: -36px;
+        z-index: -1;
+        margin: auto;
+        width: 100%;
+        opacity: 0;
+        transition: all .5s cubic-bezier(.11,.46,.45,1.63);
+    }
+    .input-bar.active{
+        top: 10px;
+        opacity: 1;
+    }
+    .input-bar.date-bar.active{
+        top: -20px;
+    }
+    .input-bar td{
+        padding: 0;
+    }
+    .input-bar td:nth-child(2){
+        width: 60px !important;
+    }
+    .input-bar .text{
+        display: inline-block;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: calc(100% - 2px);
+        height: 32px;
+        border: 1px #999 solid;
+        border-radius: 50px 0 0 50px;
+        font-size: 16px;
+        text-indent: 16px;
+    }
+    .input-bar .date{
+        display: inline-block;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: auto;
+        height: 32px;
+        line-height: 32px;
+        border: 1px #999 solid;
+        border-radius: 0 !important;
+        font-size: 16px;
+        text-indent: 16px;
+    }
+    .input-bar .date:nth-child(1){
+        border-radius: 50px 0 0 50px !important;
+    }
+    .input-bar .btn{
+        width: 60px !important;
+        height: 32px;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        border-radius: 0 50px 50px 0 !important;
+        background-color: hsla(356, 83.5%, 62.0%, .9);
+    }
+    .input-bar .btn.btn-date{
+        border: none;
+    }
+    .main .search img{
+        display: none;
+    }
+    /* End 汇总页面、流水*/
+    /*修改密码、重置密码*/
+    .sidebar .nav.psw-nav{
+        position: fixed;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 60px;
+    }
+    .sidebar .nav.psw-nav p{
+        display: none;
+    }
+    .subnav{
+        width: 100%;
+        height: 100%;
+        border-bottom: 1px solid #666;
+    }
+    .subnav li{
+        float: left;
+        display: block;
+        padding: 10px 0;
+        width: 33.3333%;
+        text-align: center;
+        font-size: 20px;
+        line-height: normal;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .subnav li.active{
+        border-right: none;
+        box-sizing: border-box;
+        border-top: 1px hsla(356, 83.5%, 62.0%, .9) solid;
+    }
+    .subnav li a{
+        color: #666;
+        text-decoration: none;
+    }
+    .password-bar{
+        position: static;
+        margin: auto;
+        margin-top: 50px;
+        width: 80%;
+    }
+    .password-bar p{
+        display: none;
+    }
+    .password-bar label{
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+        height: 32px;
+    }
+    .password-bar label img{
+        position: absolute;
+        top: 2px;
+        left: 6px;
+        font-size: 16px;
+        line-height: 32px;
+    }
+    .password-bar input{
+        width: 100%;
+        color: #666;
+        font-size: 16px;
+        text-indent: 32px;
+        line-height: 24px;
+        border: none;
+        border-bottom: 1px solid #666;
+    }
+    .password-bar .vaildcode{
+        margin-left: 0;
+    }
+    .password-bar .vaildcode input{
+        width: calc(100% - 100px);
+        left: 0;
+        color: #999;
+        text-indent: 8px;
+        line-height: 24px;
+        border: 1px solid #999;
+    }
+    .password-bar .vaildcode img{
+        top: -1px;
+        right: 0;
+        display: none;
+        width: 96px;
+    }
+    .password-bar .vaildcode .code-img{
+        display: inline-block;
+    }
+    .password-bar .loginbtn{
+        position: relative;
+        z-index: 10;
+        margin-top: 0;
+        margin-right: 0;
+        width: 100%;
+        font-size: 16px;
+        line-height: 32px;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        background-color: hsl(356, 83.5%, 62.0%);
+    }
+    .subnav li:hover{
+        border: none;
+        border-top: 1px solid #ccc;
+    }
+    .password-bar span.title{
+        position: relative;
+        top: 6px;
+        display: block;
+        font-size: 12px;
+        color: hsl(356, 83.5%, 62.0%);
+    }
+    /* End 修改密码、重置密码*/
+    /*登入后的菜单页面*/
+    .main.logged-in-page{
+        display: none !important;
+    }
+    .sidebar.logged-in-page{
+        display: block;
+        background-color: #fff;
+    }
+    .sidebar.logged-in-page .header,
+    .sidebar.logged-in-page .logo,
+    .sidebar.logged-in-page .mask,
+    .sidebar.logged-in-page .subnav{
+        display: none;
+    }
+    .sidebar.logged-in-page .nav{
+        display: block;
+    }
+    .sidebar.logged-in-page .nav{
+        position: absolute;
+        top: 30px;
+        left: 10%;
+        padding: 0;
+        width: 80%;
+        text-align: center;
+    }
+    .sidebar.logged-in-page p{
+        position: relative;
+        padding: 0;
+        margin-top: 30px;
+        color: #333;
+    }
+    .sidebar.logged-in-page p:not(:first-child) img{
+        position: absolute;
+        top: 14px;
+        left: 24px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+    }
+    .sidebar.logged-in-page p:not(:first-child):after{
+        position: absolute;
+        top: 12px;
+        left: 60px;
+        z-index: 1;
+        display: block;
+        content: '';
+        width: 1px;
+        height: 24px;
+        background-color: #fff;
+    }
+    .sidebar.logged-in-page a{
+        padding: 0;
+        color: #333;
+    }
+    .sidebar.logged-in-page p:not(:first-child){
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        line-height: 48px;
+        border-radius: 25px;
+    }
+    .sidebar.logged-in-page p:not(:first-child) a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .sidebar.logged-in-page ul:not(:first-child){
+        display: none;
+    }
+    .liushui{
+        background-color: hsl(356, 83.5%, 62.0%);
+    }
+    .huizong{
+        background-color: hsl(166, 80.0%, 39.2%);
+    }
+    .geren{
+        display: block !important;
+        background-color: hsl(247, 65.8%, 67.6%);
+    }
+    .zhuxiao{
+        background: none;
+        border: 1px solid hsl(356, 83.5%, 62.0%);
+    }
+    .zhuxiao a{
+        color: hsl(356, 83.5%, 62.0%) !important;
+    }
+    .zhuxiao i{
+        display: none;
+    }
+    .zhuxiao:after{
+        display: none !important;
+    }
+    .sidebar.logged-in-page p:nth-child(1) i{
+        display: none;
+    }
+    .sidebar.logged-in-page p:nth-child(1) img{
+        display: block;
+        margin: -59px auto 10px;
+        width: 109px;
+        height: 109px;
+    }
+    /* End 登入后的菜单页面*/
 }
-/* End 手机样式*/
+/* End 手机登录样式*/
