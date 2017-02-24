@@ -13,6 +13,7 @@
     </head>
     <body>
         <div class="container"><!--整个页面-->
+
             <div class="sidebar none"><!--侧栏-->
                 <div class="header"><img src="@routes.Assets.at("images/home.png")"/>&nbsp;<span>商户对账平台</span></div><!--侧栏头部-->
                 @if(session.get("role").getOrElse("") != "") {

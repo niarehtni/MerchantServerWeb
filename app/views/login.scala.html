@@ -63,7 +63,7 @@
             <label for="Vaildcode" class="vaildcode">
                 <img src="@routes.Assets.at("images/lock.png")"/>
                 <input id="verifyCode" name="verifyCode" type="text" placeholder="验证码"/>
-                <img id ="imgVaildcode" name="imgVaildcode" class="code-img" src="@routes.Login.captcha()" alt="">
+                <img id ="imgVaildcode" onclick="reload()" name="imgVaildcode" class="code-img" src="@routes.Login.captcha()" alt="">
             </label>
             <button class="loginbtn">登录</button>
             @form.errors.map { error =>

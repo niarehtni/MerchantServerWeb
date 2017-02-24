@@ -1,14 +1,57 @@
 @(user: model.Account)(implicit session: play.api.mvc.Session)
 
-@main("Welcome to Play! Login Sample - Restricted Area") {
+<html lang="en">
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/style.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="container"><!--整个页面-->
+            <div class="sidebar logged-in-page"><!--侧栏-->
+                <div class="header"><img src="@routes.Assets.at("images/home.png")"/>&nbsp;<span>商户对账平台</span></div><!--侧栏头部-->
+                <div class="nav"><!--侧栏导航-->
+                    <!--在<p><li>标签添加class类".active"就有选中效果-->
+                    <p><img src="@routes.Assets.at("images/user.png")" />&nbsp;&nbsp;<img class="photo" src="@routes.Assets.at("images/photo.png")" alt=""><span>@session.get("userName").get</span></p>
+                    <ul class="subnav">
+                        <li><a href="@routes.User.changePassword">修改密码</a></li>
+                        <li><a href="@routes.User.resetPassword">重置密码</a></li>
+                    </ul>
+                    <p class="liushui"><img src="@routes.Assets.at("images/hand.png")"/>&nbsp;&nbsp;<a href="">
+                        流水查询</a></p>
+                    <p class="huizong"><img src="@routes.Assets.at("images/audit.png")"/>&nbsp;&nbsp;<a href="">汇总</a></p>
+                    <p class="geren"><img src="@routes.Assets.at("images/cog.png")"/>&nbsp;&nbsp;<a href="">账户管理</a></p>
+                    <p class="zhuxiao"><img src="@routes.Assets.at("images/sign-out.png")"/>&nbsp;&nbsp;<a href="">
+                        注销</a></p>
+                </div>
 
-    <h1>Play! Login Sample - Restricted Area</h1>
 
-    <p>You are logged in as @user.name / @user.name</p>
+                <img class="logo" src="@routes.Assets.at("images/logo.png")"/>
 
-    <ul>
-        <li><a href="@routes.Login.logout">Logout</a></li>
-        <li><a href="@routes.Home.index">Restricted Area</a></li>
-    </ul>
 
-}
+            </div>
+
+            <div class="main logged-in-page"><!--右侧内容主体-->
+                <div class="header"><!--主体头部-->
+                    <table>
+                        <tr>
+                            <td>
+                                <label class="search">
+                                    <img src="@routes.Assets.at("images/search.png")"/>
+                                    <input type="search" placeholder="输入关键字"/>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="Putin" class="putin">搜索
+                                    <input id="Putin" type="button"/>
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

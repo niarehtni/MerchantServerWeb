@@ -5,6 +5,8 @@ package controllers
   */
 case class FormAccount(name:String,password:String,verifyCode:String)
 
-case class FormChangePassword(name: String,password: String,newPassword:String,verifyCode:String)
+case class FormChangePassword(name: String,oldPassword:String,password: String,newPassword:String)
 
-case class FormRestPassword(name:String,password: String,newPassword:String,verifyCode:String)
+case class FormRestPassword(name: String)
+
+case class FormTranQuery(text:String)

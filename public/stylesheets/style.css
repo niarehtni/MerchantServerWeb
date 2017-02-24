@@ -312,6 +312,9 @@ i{
     margin-top: 200px;
     content: '欢迎登录-商户对账平台';
 }
+.pc-bg{
+    width: 100%;
+}
 .sidebar.logged-in-page .geren{
     display: none;
 }
@@ -496,7 +499,8 @@ option{
     }
     .sidebar.none,
     .main .header,
-    .loginbar img[alt="web"]{
+    .loginbar img[alt="web"],
+    .pc-bg{
         display: none;
     }
     .loginbar img[alt="mbl"]{

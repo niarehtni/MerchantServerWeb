@@ -17,8 +17,11 @@ GET         /home                controllers.Home.index
 #修改密码
 GET         /changePassword      controllers.User.changePassword
 #修改密码提交
-GET         /changePasswordSumit controllers.User.changePasswordSubmit
-
+POST       /changePasswordSumit controllers.User.changePasswordSubmit
+#初始化密码
+GET        /resetPassword       controllers.User.resetPassword
+#初始化密码提交
+POST       /resetPasswordSumit  controllers.User.resetPasswordSubmit
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
