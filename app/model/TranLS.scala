@@ -11,7 +11,4 @@ case class TranLS(MerchantNo:String,
                 SalfAmt:Double,
                 FeeAmt:Double,
                 Rnn:String,
-                BatchNo:String,
-                TiackNo:String,
-                TrackNo:String,
                 Channel:String)

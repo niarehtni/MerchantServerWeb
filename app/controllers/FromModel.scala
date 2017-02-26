@@ -9,4 +9,4 @@ case class FormChangePassword(name: String,oldPassword:String,password: String,n
 
 case class FormRestPassword(name: String)
 
-case class FormTranQuery(text:String)
+case class FormTranQuery(orderId:String,date:String)

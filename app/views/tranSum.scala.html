@@ -1,0 +1,98 @@
+@(tranls: Option[model.TranSumLs])(implicit flash: Flash, session: play.api.mvc.Session)
+
+@main("交易汇总") {
+    <div class="summary">
+        <ul>
+            <li class="active">总金额：  @if(tranls.isDefined) {
+                @tranls.get.TranAmt
+            } 元</li>
+            <li>总笔数：：@if(tranls.isDefined) {
+                @tranls.get.TranCount
+            } 笔</li>
+            <li>总手续费：：@if(tranls.isDefined) {
+                @tranls.get.TranFee
+            } 元</li>
+        </ul>
+    </div>
+    <div class="chart-bar"><!--折线图表-->
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+            //搜索框点击弹出
+            $('.search-btn').click(function () {
+                $('.main').toggleClass('active')
+            })
+            // End 搜索框点击弹出
+            //为data准备的数据
+
+            var arr2 = new Array();
+            @if(tranls.isDefined){
+            arr2[0] = '@tranls.get.TranAmt1';
+            arr2[1] = '@tranls.get.TranAmt2';
+            arr2[2] = '@tranls.get.TranAmt3';
+            arr2[3] = '@tranls.get.TranAmt4';
+            arr2[4] = '@tranls.get.TranAmt5';
+            arr2[5] = '@tranls.get.TranAmt6';
+            arr2[6] = '@tranls.get.TranAmt';
+            }
+            //用于存放图表上的数据
+            var lineChartData = {
+//表的X轴参数
+                labels: ["六天前", "5天前", "4天前", "3天前", "前天", "昨天", "今天"],
+                datasets: [
+                    {
+                        fillColor: "transparent",     //背景色，常用transparent透明
+                        strokeColor: "rgba(220,220,220,1)",  //线条颜色，也可用"#ffffff"
+                        pointColor: "rgba(220,220,220,1)",   //点的填充颜色
+                        pointStrokeColor: "#fff",            //点的外边框颜色
+                        data: []      //点的Y轴值
+                    },
+                    {
+                        fillColor: "transparent",
+                        strokeColor: "hsla(356, 83.5%, 62.0%,1)",
+                        pointColor: "hsla(356, 83.5%, 62.0%,1)",
+                        pointStrokeColor: "#fff",
+                        data: []    //data中的参数，通过下方for循环，获取arr2中的数据
+                    }
+                ]
+            }
+
+            for (var i = 0; i < arr2.length; i++) {
+                lineChartData.datasets[1].data.push(arr2[i]);//将数组arr2中的值写入data
+            }
+
+            //定义图表的参数
+            var defaults = {
+                scaleStartValue: null,     // Y 轴的起始值
+                scaleLineColor: "rgba(0,0,0,.1)",    // Y/X轴的颜色
+                scaleLineWidth: 1,        // X,Y轴的宽度
+                scaleShowLabels: true,    // 刻度是否显示标签, 即Y轴上是否显示文字
+                scaleLabel: "<%=value%>", // Y轴上的刻度,即文字
+                scaleFontFamily: "'苹方'",  // 字体
+                scaleFontSize: 14,        // 文字大小
+                scaleFontStyle: "normal",  // 文字样式
+                scaleFontColor: "#666",    // 文字颜色
+                scaleShowGridLines: true,   // 是否显示网格
+                scaleGridLineColor: "rgba(0,0,0,.05)",   // 网格颜色
+                scaleGridLineWidth: 2,      // 网格宽度
+                bezierCurve: false,         // 是否使用贝塞尔曲线? 即:线条是否弯曲
+                pointDot: true,             // 是否显示点数
+                pointDotRadius: 4,          // 圆点的大小
+                pointDotStrokeWidth: 1,     // 圆点的笔触宽度, 即:圆点外层边框大小
+                datasetStroke: true,        // 数据集行程
+                datasetStrokeWidth: 2,      // 线条的宽度, 即:数据集
+                datasetFill: false,         // 是否填充数据集
+                animation: true,            // 是否执行动画
+                animationSteps: 60,          // 动画的时间
+                animationEasing: "easeOutQuart",    // 动画的特效
+                onAnimationComplete: null    // 动画完成时的执行函数
+            }
+
+            window.onload = function () {
+                var ctx = document.getElementById("myChart").getContext("2d");
+                window.myLine = new Chart(ctx).Line(lineChartData, defaults);
+            }
+
+    </script>
+}

@@ -16,40 +16,26 @@
                     <!--在<p><li>标签添加class类".active"就有选中效果-->
                     <p><img src="@routes.Assets.at("images/user.png")" />&nbsp;&nbsp;<img class="photo" src="@routes.Assets.at("images/photo.png")" alt=""><span>@session.get("userName").get</span></p>
                     <ul class="subnav">
-                        <li><a href="@routes.User.changePassword">修改密码</a></li>
-                        <li><a href="@routes.User.resetPassword">重置密码</a></li>
+                        <li><a href="">修改密码</a></li>
+                        <li><a href="">重置密码</a></li>
+                        <li><a href="">添加商户</a></li>
                     </ul>
-                    <p class="liushui"><img src="@routes.Assets.at("images/hand.png")"/>&nbsp;&nbsp;<a href="">
-                        流水查询</a></p>
-                    <p class="huizong"><img src="@routes.Assets.at("images/audit.png")"/>&nbsp;&nbsp;<a href="">汇总</a></p>
-                    <p class="geren"><img src="@routes.Assets.at("images/cog.png")"/>&nbsp;&nbsp;<a href="">账户管理</a></p>
-                    <p class="zhuxiao"><img src="@routes.Assets.at("images/sign-out.png")"/>&nbsp;&nbsp;<a href="">
-                        注销</a></p>
+                    <p class="liushui"><img src="@routes.Assets.at("images/hand.png")"/>&nbsp;&nbsp;<a href="@routes.Tran.tranLs()">流水查询</a></p>
+                    <p class="huizong"><img src="@routes.Assets.at("images/audit.png")"/>&nbsp;&nbsp;<a href="@routes.Tran.tranSum()">汇总</a></p>
+                    <p class="zhuxiao"><img src="@routes.Assets.at("images/sign-out.png")"/>&nbsp;&nbsp;<a href="@routes.Login.logout()">注销</a></p>
+
                 </div>
 
 
-                <img class="logo" src="@routes.Assets.at("images/logo.png")"/>
+
+                <img class="logo" src="./images/logo.png"/>
 
 
             </div>
 
             <div class="main logged-in-page"><!--右侧内容主体-->
                 <div class="header"><!--主体头部-->
-                    <table>
-                        <tr>
-                            <td>
-                                <label class="search">
-                                    <img src="@routes.Assets.at("images/search.png")"/>
-                                    <input type="search" placeholder="输入关键字"/>
-                                </label>
-                            </td>
-                            <td>
-                                <label for="Putin" class="putin">搜索
-                                    <input id="Putin" type="button"/>
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
+
                 </div>
             </div>
         </div>

@@ -1,33 +1,28 @@
-@(tranls: List[model.TranLS])(implicit flash: Flash, session: play.api.mvc.Session)
+@(tranls: List[model.TranLS], form: Form[FormTranQuery])(implicit flash: Flash, session: play.api.mvc.Session)
 
 @main("交易流水查询") {
+
     <div class="check">
-        <ul>
-            <li class="to-text active">流水号</li>
-            <li class="to-text">交易金额</li>
-            <li class="to-date">交易日期</li>
-            <li class="to-date">交易时间</li>
-        </ul>
 
-
-
+    @helper.form(routes.Tran.tranQuery, 'id -> "from") {
         <table class="input-bar text-bar active"><!--流水号、交易金额-->
             <tr>
-                <td><input class="text" type="text" placeholder="请输入流水号或交易金额"></td>
-                <td><input class="btn btn-text" type="button" value="搜索"></td>
+                <td><input id="orderId" name="orderId" class="text" type="text" placeholder="订单号"></td>
             </tr>
         </table>
-        <table class="input-bar date-bar"><!--日期、时间-->
+        <table class="input-bar date-bar">
             <tr>
                 <td>
-                    <input class="date" type="date">
-                    <input class="date" type="date">
+                    <input name="date" id="date" type="text" class="text" placeholder="日期YYYYMMDD">
                 </td>
-                <td><input class="btn btn-date" type="button" value="搜索"></td>
+                <td> <button class="btn btn-date" type="submit" >搜索</button></td>
             </tr>
         </table>
+    }
     </div>
     <div class="table-box">
+
+    @if(tranls.length > 0) {
         <table class="result">
             <tr>
                 <th>商户号</th>
@@ -37,124 +32,23 @@
                 <th>交易时间</th>
                 <th>清算金额</th>
                 <th>手续费</th>
-                <th>参考号</th>
-                <th>批次号</th>
-                <th>票据号</th>
-                <th>流水号</th>
+                <th>订单号</th>
                 <th>渠道</th>
             </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>325455</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-            </tr>
-            <tr>
-                <td>235324</td>
-                <td>345545425</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>14355.25</td>
-                <td>145.23</td>
-                <td>542354364646</td>
-                <td>59831326</td>
-                <td>834381326</td>
-                <td>834381326</td>
-            </tr>
+            @tranls.map { model =>
+                <tr>
+                    <td>@model.MerchantNo</td>
+                    <td>@model.TerminalNo</td>
+                    <td>@model.TranAmt</td>
+                    <td>@model.TranDate</td>
+                    <td>@model.TranTime</td>
+                    <td>@model.SalfAmt</td>
+                    <td>@model.FeeAmt</td>
+                    <td>@model.Rnn</td>
+                    <td>@model.Channel</td>
+                </tr>
+            }
         </table>
+    }
     </div>
 }
