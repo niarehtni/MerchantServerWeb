@@ -312,9 +312,6 @@ i{
     margin-top: 200px;
     content: '欢迎登录-商户对账平台';
 }
-.pc-bg{
-    width: 100%;
-}
 .sidebar.logged-in-page .geren{
     display: none;
 }
@@ -329,88 +326,59 @@ i{
 }
 .check{
     position: relative;
-    margin: 0 auto 4em;
+    margin: 0 auto 32px;
     width: 80%;
 }
-.check ul{
-    float: left;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    list-style: none;
-}
-.check li{
-    float: left;
-    padding: 1em;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 25%;
-    border: 1px #999 solid;
-    border-left: none;
-    font-size: 2.5em;
-    text-align: center;
-    color: hsl(356, 83.5%, 62.0%);
-    cursor: pointer;
-}
-.check li:first-child{
-    border-left: 1px #999 solid;
-}
-.check li:hover,
-.check li.active{
-    color: #fff;
-    background-color: hsla(356, 83.5%, 62.0%, .9);
-}
-.input-bar{
+.check p{
     position: relative;
-    top: 2em;
-    margin: auto;
-    width: 600px;
-}
-.input-bar td{
-    padding: 0;
-}
-.input-bar .text{
-    display: inline-block;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 500px;
+    margin-bottom: 10px;
+    width: 100%;
     height: 50px;
-    border: 1px #999 solid;
-    border-radius: 50px 0 0 50px;
-    font-size: 2.5em;
-    text-indent: 2em;
+    font-size: 0;
 }
-.input-bar .date{
+.check p span{
     display: inline-block;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 248px;
-    height: 50px;
+    width: 160px;
+    height: 100%;
+    font-size: 16px;
     line-height: 50px;
-    border: 1px #999 solid;
-    border-radius: 50px 0 0 50px;
-    font-size: 2.5em;
-    text-indent: 2em;
-}
-.input-bar .date:nth-child(2){
-    border-radius: 0 50px 50px 0;
-}
-.input-bar .btn{
-    width: 100px;
-    height: 50px;
-    font-size: 2.5em;
+    text-align: center;
     color: #fff;
-    border: 1px #999 solid;
-    border-radius: 0 50px 50px 0;
+    border-radius: 5px 0 0 5px;
+    background-color: hsla(356, 83.5%, 62.0%, .7);
+}
+.check p input{
+    position: absolute;
+    top: 0;
+    left: 160px;
+    padding: 0;
+    width: calc(100% - 160px);
+    height: 100%;
+    font-size: 16px;
+    line-height: 50px;
+    text-indent: 16px;
+    border: 1px hsla(356, 83.5%, 62.0%, .7) solid;
+    border-radius: 0 5px 5px 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.check p button{
+    display: block;
+    margin: 0 auto;
+    width: 320px;
+    height: 50px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px hsla(356, 83.5%, 62.0%, .7) solid;
+    border-radius: 5px;
     background-color: hsla(356, 83.5%, 62.0%, .9);
 }
-.input-bar .btn.btn-date{
-    width: 98px;
-    border-radius: 50px;
+.check p button:active{
+    font-size: 18px;
+    color: antiquewhite;
 }
+
 .result{
     margin: auto;
     width: 98%;
@@ -499,8 +467,7 @@ option{
     }
     .sidebar.none,
     .main .header,
-    .loginbar img[alt="web"],
-    .pc-bg{
+    .loginbar img[alt="web"]{
         display: none;
     }
     .loginbar img[alt="mbl"]{
@@ -786,139 +753,49 @@ option{
     }
     .result tr:nth-child(1){
         padding: 6px;
-        border: 1px hsl(356, 83.5%, 62.0%) solid;
-        background-color: hsl(356, 83.5%, 62.0%);
+        border: 1px hsla(356, 83.5%, 62.0%, .9) solid;
+        background-color: hsla(356, 83.5%, 62.0%, .9);
     }
     .result tr th{
         color: #fff;
-        background-color: hsl(356, 83.5%, 62.0%);
+        background-color: transparent;
     }
     .check{
         margin-bottom: 0;
         width: 100%;
     }
-    .check ul{
-        padding: 0;
+    .check p{
+        margin-bottom: 10px;
         width: 100%;
-        list-style: none;
+        height: 32px;
+        font-size: 0;
     }
-    .check li{
-        display: inline-block;
-        float: left;
-        margin-top: 8px;
-        padding: 8px 16px;
-        width: 50%;
-        font-size: 16px;
-        line-height: 24px;
-        text-align: center;
-        color: #666;
-        border: 1px hsl(356, 83.5%, 62.0%) solid;
-        box-sizing: border-box;
-    }
-    .check li:hover{
-        background: none;
-        color: #333;
-    }
-    .check li:nth-child(odd){
+    .check p span{
+        width: 90px;
+        font-size: 14px;
+        line-height: 28px;
         border-radius: 50px 0 0 50px;
     }
-    .check li:nth-child(even){
+    .check p input{
+        left: 90px;
+        width: calc(100% - 90px);
+        font-size: 16px;
+        text-indent: 16px;
         border-radius: 0 50px 50px 0;
-    }
-    .check li:nth-child(1){
-        border: 1px hsl(356, 83.5%, 62.0%) solid;
-        border-right: 1px hsl(356, 83.5%, 62.0%) solid;
-    }
-    .check li:nth-child(2){
-        border: 1px hsl(166, 80.0%, 39.2%) solid;
-        border-left: none;
-    }
-    .check li:nth-child(3){
-        border: 1px hsl(247, 65.8%, 67.6%) solid;
-        border-right: 1px hsl(247, 65.8%, 67.6%) solid;
-    }
-    .check li:nth-child(4){
-        border: 1px #999 solid;
-        border-left: none;
-    }
-    .check li:nth-child(1).active{
-        color: #fff;
-        background-color: hsla(356, 83.5%, 62.0%, .9);
-    }
-    .check li:nth-child(2).active{
-        color: #fff;
-        background-color: hsla(166, 80.0%, 39.2%, .9);
-    }
-    .check li:nth-child(3).active{
-        color: #fff;
-        background-color: hsla(247, 65.8%, 67.6%, .9);
-    }
-    .check li:nth-child(4).active{
-        color: #fff;
-        border: 1px #666 solid;
-        background-color: #666;
-    }
-    .input-bar{
-        position: relative;
-        top: -36px;
-        z-index: -1;
-        margin: auto;
-        width: 100%;
-        opacity: 0;
-        transition: all .5s cubic-bezier(.11,.46,.45,1.63);
-    }
-    .input-bar.active{
-        top: 10px;
-        opacity: 1;
-    }
-    .input-bar.date-bar.active{
-        top: -20px;
-    }
-    .input-bar td{
-        padding: 0;
-    }
-    .input-bar td:nth-child(2){
-        width: 60px !important;
-    }
-    .input-bar .text{
-        display: inline-block;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: calc(100% - 2px);
-        height: 32px;
-        border: 1px #999 solid;
-        border-radius: 50px 0 0 50px;
-        font-size: 16px;
-        text-indent: 16px;
     }
-    .input-bar .date{
-        display: inline-block;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        width: auto;
-        height: 32px;
-        line-height: 32px;
-        border: 1px #999 solid;
-        border-radius: 0 !important;
-        font-size: 16px;
-        text-indent: 16px;
-    }
-    .input-bar .date:nth-child(1){
-        border-radius: 50px 0 0 50px !important;
-    }
-    .input-bar .btn{
-        width: 60px !important;
+    .check p button{
+        width: 50%;
         height: 32px;
         font-size: 14px;
-        color: #fff;
-        border: none;
-        border-radius: 0 50px 50px 0 !important;
+        border-radius: 50px;
         background-color: hsla(356, 83.5%, 62.0%, .9);
     }
-    .input-bar .btn.btn-date{
-        border: none;
+    .check p button:active{
+        font-size: 18px;
+        color: antiquewhite;
     }
     .main .search img{
         display: none;

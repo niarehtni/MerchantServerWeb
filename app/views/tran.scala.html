@@ -5,19 +5,19 @@
     <div class="check">
 
     @helper.form(routes.Tran.tranQuery, 'id -> "from") {
-        <table class="input-bar text-bar active"><!--流水号、交易金额-->
-            <tr>
-                <td><input id="orderId" name="orderId" class="text" type="text" placeholder="订单号"></td>
-            </tr>
-        </table>
-        <table class="input-bar date-bar">
-            <tr>
-                <td>
-                    <input name="date" id="date" type="text" class="text" placeholder="日期YYYYMMDD">
-                </td>
-                <td> <button class="btn btn-date" type="submit" >搜索</button></td>
-            </tr>
-        </table>
+        <div class="check">
+            <p>
+                <span>订单号</span>
+                <input class="text" type="text" id="orderId" name="orderId" placeholder="请输入订单号/也可以为空">
+            </p>
+            <p>
+                <span>交易日期</span>
+                <input class="date" type="text" name="date" id="date" placeholder="YYYYMMDD" >
+            </p>
+            <p>
+                <button type="submit">搜索</button>
+            </p>
+        </div>
     }
     </div>
     <div class="table-box">
