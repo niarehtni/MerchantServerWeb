@@ -47,7 +47,16 @@
                     <td>@model.FeeAmt</td>
                     <td>@model.Rnn</td>
                     <td>@model.CardNo</td>
-                    <td>@model.Channel</td>
+
+                    @if(model.Channel == "0"){
+                        <td>支付宝</td>
+                    }
+                    @if(model.Channel == "1"){
+                        <td>银行卡</td>
+                    }
+                    @if(model.Channel == "2"){
+                        <td>微信</td>
+                    }
                 </tr>
             }
         </table>

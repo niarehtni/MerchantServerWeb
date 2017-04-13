@@ -1,0 +1,25 @@
+@(tranls: List[model.TranLS], form: Form[FormTranQuery])(implicit flash: Flash, session: play.api.mvc.Session)
+
+
+@main("交易流水导出") {
+    <div class="check">
+
+    @helper.form(routes.Tran.exportPost(), 'id -> "from") {
+        <div class="check">
+            <p>
+                <span>订单号</span>
+                <input class="text" type="text" id="orderId" name="orderId" placeholder="请输入订单号/也可以为空">
+            </p>
+            <p>
+                <span>交易日期</span>
+                <input class="date" type="text" name="date" id="date" placeholder="YYYYMMDD" >
+            </p>
+            <p>
+                <button type="submit">导出</button>
+            </p>
+        </div>
+    }
+    </div>
+    <div class="table-box">
+    </div>
+}

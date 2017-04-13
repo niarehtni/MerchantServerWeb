@@ -53,7 +53,12 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
       .map(p => Ok(html.tranSum(p)))
   }
 
-  def export = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
+
+  def export = StackAction(AuthorityKey -> NormalUser) { implicit request =>
+    Ok(html.export(List[TranLS](), queryForm))
+  }
+
+  def exportPost = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
     queryForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors))),
       formQuery => tranService.listAll(formQuery.date, formQuery.orderId).map(p => {
@@ -62,21 +67,21 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
           Set(Sheet("日明细") {
             p.zipWithIndex.map {
               case (row, index) => {
-                Row(index)(Set(StringCell(1, row.MerchantNo),
-                  StringCell(2, row.TerminalNo),
-                  StringCell(3, row.CardNo),
-                  StringCell(4, row.TranAmt.toString),
-                  StringCell(5, row.FeeAmt.toString),
-                  StringCell(6, row.TranDate),
-                  StringCell(7, row.TranTime),
-                  StringCell(8, row.Rnn),
-                  StringCell(9, row.Channel)))
+                Row(index)(Set(StringCell(0, row.MerchantNo),
+                  StringCell(1, row.TerminalNo),
+                  StringCell(2, row.CardNo),
+                  StringCell(3, row.TranAmt.toString),
+                  StringCell(4, row.FeeAmt.toString),
+                  StringCell(5, row.TranDate),
+                  StringCell(6, row.TranTime),
+                  StringCell(7, row.Rnn),
+                  StringCell(8, row.Channel)))
               }
             }.toSet
           })
         }
         workbook.asPoi.write(oututStream)
-        Ok(oututStream.toByteArray()).as("xls")
+        Ok(oututStream.toByteArray()).as("xls").withHeaders("Content-Disposition" -> "attachment; filename=tranls.xls")
       }))
   }
 

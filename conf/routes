@@ -4,32 +4,34 @@
 
 # Home page
 
-GET         /login               controllers.Login.login
+GET         /login                      controllers.Login.login
 
-GET         /logout              controllers.Login.logout
+GET         /logout                     controllers.Login.logout
 
-GET         /captcha             controllers.Login.captcha
+GET         /captcha                    controllers.Login.captcha
 
-POST        /login               controllers.Login.authenticate
+POST        /login                      controllers.Login.authenticate
 
-GET         /home                controllers.Home.index
+GET         /home                       controllers.Home.index
 
-GET         /changePassword      controllers.User.changePassword
+GET         /changePassword             controllers.User.changePassword
 
-POST       /changePasswordSumit controllers.User.changePasswordSubmit
+POST        /changePasswordSumit        controllers.User.changePasswordSubmit
 
-GET        /resetPassword       controllers.User.resetPassword
+GET         /resetPassword              controllers.User.resetPassword
 
-POST       /resetPasswordSumit  controllers.User.resetPasswordSubmit
+POST        /resetPasswordSumit         controllers.User.resetPasswordSubmit
 
-GET        /tran                controllers.Tran.tranLs
+GET         /tran                       controllers.Tran.tranLs
 
-POST       /tranQuery           controllers.Tran.tranQuery
+POST        /tranQuery                  controllers.Tran.tranQuery
 
-GET        /tranExport          controllers.Tran.export
+GET         /tranExport                 controllers.Tran.export
 
-GET        /tranSum             controllers.Tran.tranSum
+POST        /exportPost                 controllers.Tran.exportPost
+
+GET         /tranSum                    controllers.Tran.tranSum
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.at(path="/public", file)
+GET         /assets/*file               controllers.Assets.at(path="/public", file)
 
