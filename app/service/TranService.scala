@@ -42,9 +42,13 @@ class TranServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigPr
 
     def rrn = column[String]("rrn",O.PrimaryKey)
 
+    def cardNo = column[String]("cardNo")
+
     def channel = column[String]("channel",O.PrimaryKey)
 
-    def * = (merchantNo, terminalNo, tranAmt, tranDate, tranTime, slafAmt, feeAmt, rrn, channel) <> (TranLS.tupled, TranLS.unapply)
+    def fileDate = column[String]("fileDate")
+
+    def * = (merchantNo, terminalNo, tranAmt, tranDate, tranTime, slafAmt, feeAmt, rrn,cardNo, channel,fileDate) <> (TranLS.tupled, TranLS.unapply)
   }
 
   override def listAll(tranDate: String, orderId: String): Future[List[TranLS]] = {

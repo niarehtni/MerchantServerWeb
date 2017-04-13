@@ -26,6 +26,8 @@ GET        /tran                controllers.Tran.tranLs
 
 POST       /tranQuery           controllers.Tran.tranQuery
 
+GET        /tranExport          controllers.Tran.export
+
 GET        /tranSum             controllers.Tran.tranSum
 
 # Map static resources from the /public folder to the /assets URL path

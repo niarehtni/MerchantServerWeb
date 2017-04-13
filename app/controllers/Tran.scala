@@ -1,6 +1,7 @@
 package controllers
 
 
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.time.DateTimeException
 import java.util.Calendar
@@ -8,6 +9,7 @@ import javax.inject.Inject
 
 import auth.AuthConfigImpl
 import auth.Role.NormalUser
+import info.folone.scala.poi.{Row, Sheet, StringCell, Workbook}
 import jp.t2v.lab.play2.auth.AuthElement
 import model.TranLS
 import play.api.mvc.Controller
@@ -49,6 +51,33 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
     tranSumLsService.get(request.session.get("userName").getOrElse(""),
       new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime()))
       .map(p => Ok(html.tranSum(p)))
+  }
+
+  def export = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
+    queryForm.bindFromRequest.fold(
+      formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors))),
+      formQuery => tranService.listAll(formQuery.date, formQuery.orderId).map(p => {
+        val oututStream = new ByteArrayOutputStream()
+        val workbook = Workbook {
+          Set(Sheet("日明细") {
+            p.zipWithIndex.map {
+              case (row, index) => {
+                Row(index)(Set(StringCell(1, row.MerchantNo),
+                  StringCell(2, row.TerminalNo),
+                  StringCell(3, row.CardNo),
+                  StringCell(4, row.TranAmt.toString),
+                  StringCell(5, row.FeeAmt.toString),
+                  StringCell(6, row.TranDate),
+                  StringCell(7, row.TranTime),
+                  StringCell(8, row.Rnn),
+                  StringCell(9, row.Channel)))
+              }
+            }.toSet
+          })
+        }
+        workbook.asPoi.write(oututStream)
+        Ok(oututStream.toByteArray()).as("xls")
+      }))
   }
 
 }
