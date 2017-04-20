@@ -48,18 +48,21 @@
                     <td>@model.Rnn</td>
                     <td>@model.CardNo</td>
 
-                    @if(model.Channel == "0"){
+                    @if(model.Channel == "0") {
                         <td>支付宝</td>
                     }
-                    @if(model.Channel == "1"){
+                    @if(model.Channel == "1") {
                         <td>银行卡</td>
                     }
-                    @if(model.Channel == "2"){
+                    @if(model.Channel == "2") {
                         <td>微信</td>
                     }
                 </tr>
             }
         </table>
+    } else {
+        <a href="">没有交易记录</a>
     }
+
     </div>
 }
