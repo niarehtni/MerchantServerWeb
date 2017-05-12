@@ -1,4 +1,4 @@
-@(tranls: List[model.TranLS], form: Form[FormTranQuery])(implicit flash: Flash, session: play.api.mvc.Session)
+@(tranls: List[model.TranLS], form: Form[FormTranQuery], count: Int, index: Int, date: String, orderId: String)(implicit flash: Flash, session: play.api.mvc.Session)
 
 @main("交易流水查询") {
 
@@ -22,47 +22,65 @@
     </div>
     <div class="table-box">
 
-    @if(tranls.length > 0) {
-        <table class="result">
-            <tr>
-                <th>商户号</th>
-                <th>终端号</th>
-                <th>交易金额</th>
-                <th>交易日期</th>
-                <th>交易时间</th>
-                <th>清算金额</th>
-                <th>手续费</th>
-                <th>订单号</th>
-                <th>卡号</th>
-                <th>渠道</th>
-            </tr>
-            @tranls.map { model =>
+        @if(tranls.length > 0) {
+            <table class="result">
                 <tr>
-                    <td>@model.MerchantNo</td>
-                    <td>@model.TerminalNo</td>
-                    <td>@model.TranAmt</td>
-                    <td>@model.TranDate</td>
-                    <td>@model.TranTime</td>
-                    <td>@model.SalfAmt</td>
-                    <td>@model.FeeAmt</td>
-                    <td>@model.Rnn</td>
-                    <td>@model.CardNo</td>
-
-                    @if(model.Channel == "0") {
-                        <td>支付宝</td>
-                    }
-                    @if(model.Channel == "1") {
-                        <td>银行卡</td>
-                    }
-                    @if(model.Channel == "2") {
-                        <td>微信</td>
-                    }
+                    <th>商户号</th>
+                    <th>终端号</th>
+                    <th>交易金额</th>
+                    <th>交易日期</th>
+                    <th>交易时间</th>
+                    <th>清算金额</th>
+                    <th>手续费</th>
+                    <th>订单号</th>
+                    <th>卡号</th>
+                    <th>渠道</th>
                 </tr>
+                @tranls.map { model =>
+                    <tr>
+                        <td>@model.MerchantNo</td>
+                        <td>@model.TerminalNo</td>
+                        <td>@model.TranAmt</td>
+                        <td>@model.TranDate</td>
+                        <td>@model.TranTime</td>
+                        <td>@model.SalfAmt</td>
+                        <td>@model.FeeAmt</td>
+                        <td>@model.Rnn</td>
+                        <td>@model.CardNo</td>
+
+                        @if(model.Channel == "0") {
+                            <td>支付宝</td>
+                        }
+                        @if(model.Channel == "1") {
+                            <td>银行卡</td>
+                        }
+                        @if(model.Channel == "2") {
+                            <td>微信</td>
+                        }
+                    </tr>
+                }
+            </table>
+        } else {
+            <span class="error">没有交易记录</span>
+        }
+        <ul>
+            @if(index > 0) {
+                <li class="prev">
+                    <a href='@routes.Tran.tranQueryCount(date,
+                        orderId, index - 1, count)'>上一页</a>
+                </li>
             }
-        </table>
-    } else {
-        <a href="">没有交易记录</a>
-    }
+            @if(index < count) {
+                <li class="next">
+                    <a href='@routes.Tran.tranQueryCount(date,
+                        orderId, index + 1, count)'>
+                        下一页</a>
+                </li>
+            }
+            <li class="count">
+                总笔数:@count
+            </li>
+        </ul>
 
     </div>
 }

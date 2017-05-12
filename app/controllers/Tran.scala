@@ -22,6 +22,7 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
+
 /**
   * Created by renger on 2017/2/24.
   */
@@ -37,14 +38,23 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
 
 
   def tranLs = StackAction(AuthorityKey -> NormalUser) { implicit request =>
-    Ok(html.tran(List[TranLS](), queryForm))
+    Ok(html.tran(List[TranLS](), queryForm, 0, 0,"",""))
   }
 
-  def tranQuery = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
+  def tranQuery() = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
     queryForm.bindFromRequest.fold(
-      formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors))),
-      formQuery => tranService.listAll(formQuery.date, formQuery.orderId).map(p => Ok(html.tran(p, queryForm)))
+      formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors, 0, 0,"",""))),
+      formQuery => tranService.listCount(formQuery.date, formQuery.orderId).flatMap {
+        count =>
+          tranService.listAll(formQuery.date, formQuery.orderId, 0).map(p =>
+            Ok(html.tran(p, queryForm, count, 0,formQuery.date,formQuery.orderId))
+            )
+      }
     )
+  }
+
+  def tranQueryCount(tranDate: String, orderId: String, index: Int, count: Int) = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
+    tranService.listAll(tranDate, orderId, index).map(p => Ok(html.tran(p, queryForm, count, index,tranDate,orderId)))
   }
 
   def tranSum = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
@@ -60,7 +70,7 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
 
   def exportPost = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
     queryForm.bindFromRequest.fold(
-      formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors))),
+      formWithErrors => Future.successful(BadRequest(html.export(List[TranLS](), formWithErrors))),
       formQuery => tranService.listAll(formQuery.date, formQuery.orderId).map(p => {
         val oututStream = new ByteArrayOutputStream()
         val workbook = Workbook {

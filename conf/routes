@@ -26,6 +26,8 @@ GET         /tran                       controllers.Tran.tranLs
 
 POST        /tranQuery                  controllers.Tran.tranQuery
 
+GET         /tranQueryCount             controllers.Tran.tranQueryCount(tranDate:String,orderId:String,index:Int,count:Int)
+
 GET         /tranExport                 controllers.Tran.export
 
 POST        /exportPost                 controllers.Tran.exportPost

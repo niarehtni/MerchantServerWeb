@@ -40,7 +40,7 @@ class Login @Inject()(protected val accountService: AccountService) extends Cont
     loginForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest(html.login(formWithErrors))),
       user => {
-        if (request.session.get("verifyCode").get == user.verifyCode)
+        if (request.session.get("verifyCode").getOrElse("") == user.verifyCode)
           accountService.get(user.name, user.password).flatMap {
             _ match {
               case None => Future.successful(BadRequest(html.login(loginForm.fill(user).withError("name", "用户名密码错误"))))

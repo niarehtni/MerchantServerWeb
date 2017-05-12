@@ -21,6 +21,7 @@ button:hover{
     bottom: 0;
     left: 0;
     right: 0;
+    overflow: auto;
     font-size: 62.5%;/*10px*/
 }
 i{
@@ -28,8 +29,9 @@ i{
 }
 /*侧栏*/
 .sidebar{
-    position: absolute;
+    position: fixed;
     top: 0;
+    bottom:0;
     left: 0;
     width: 250px;
     height: 100%;
@@ -1018,3 +1020,78 @@ option{
     /* End 登入后的菜单页面*/
 }
 /* End 手机登录样式*/
+
+/*分页*/
+@media screen and (max-width: 768px) {
+    .container {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: auto;
+        font-size: 62.5%; /*10px*/
+    }
+
+    .table-box ul li {
+        display: none !important;
+    }
+
+    .table-box ul li.prev,
+    .table-box ul li.next {
+        display: inline-block !important;
+    }
+    .table-box ul .prev a,
+    .table-box ul .next a {
+        padding: 6px 10px;
+        font-size: 14px !important;
+    }
+}
+.table-box .error{
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 16px;
+    color: #999 !important;
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 2px 2px 2px  #ccc;
+    letter-spacing: 2px;
+}
+.table-box ul{
+    position: relative;
+    padding: 0;
+    text-align: center;
+    margin: 14px auto 20px;
+    width: 90%;
+    max-width: 768px;
+}
+.table-box ul li{
+    display: inline-block;
+    margin: 0 10px;
+}
+.table-box ul .prev a,
+.table-box ul .next a{
+    font-size: 24px;
+    font-family: Arial;
+}
+.table-box ul li a{
+    overflow: hidden;
+    padding: 6px 14px;
+    vertical-align: middle;
+    width: 40px;
+    font-size: 13px;
+    text-indent: 100%;
+    color: hsla(356, 83.5%, 62.0%, .6);
+    border: 1px solid hsl(356, 83.5%, 62.0%);
+    border-radius: 4px;
+    text-decoration: none;
+}
+.table-box ul .count{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    padding-top: 6px;
+}
+
+/* End 分页*/
