@@ -22,7 +22,6 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
-
 /**
   * Created by renger on 2017/2/24.
   */
@@ -36,31 +35,43 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
     )(FormTranQuery.apply)(FormTranQuery.unapply)
   }
 
+  val sumQueryForm = Form(
+    single(
+      "date" -> text
+    )
+  )
+
 
   def tranLs = StackAction(AuthorityKey -> NormalUser) { implicit request =>
-    Ok(html.tran(List[TranLS](), queryForm, 0, 0,"",""))
+    Ok(html.tran(List[TranLS](), queryForm, 0, 0, "", ""))
   }
 
   def tranQuery() = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
     queryForm.bindFromRequest.fold(
-      formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors, 0, 0,"",""))),
-      formQuery => tranService.listCount(formQuery.date, formQuery.orderId).flatMap {
+      formWithErrors => Future.successful(BadRequest(html.tran(List[TranLS](), formWithErrors, 0, 0, "", ""))),
+      formQuery => tranService.listCount(request.session.get("userName").getOrElse(""), formQuery.date, formQuery.orderId).flatMap {
         count =>
-          tranService.listAll(formQuery.date, formQuery.orderId, 0).map(p =>
-            Ok(html.tran(p, queryForm, count, 0,formQuery.date,formQuery.orderId))
-            )
+          tranService.listAll(request.session.get("userName").getOrElse(""), formQuery.date, formQuery.orderId, 0).map(p =>
+            Ok(html.tran(p, queryForm, count, 0, formQuery.date, formQuery.orderId))
+          )
       }
     )
   }
 
   def tranQueryCount(tranDate: String, orderId: String, index: Int, count: Int) = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
-    tranService.listAll(tranDate, orderId, index).map(p => Ok(html.tran(p, queryForm, count, index,tranDate,orderId)))
+    tranService.listAll(request.session.get("userName").getOrElse(""), tranDate, orderId, index).map(p => Ok(html.tran(p, queryForm, count, index, tranDate, orderId)))
   }
 
-  def tranSum = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
-    tranSumLsService.get(request.session.get("userName").getOrElse(""),
-      new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime()))
-      .map(p => Ok(html.tranSum(p)))
+  def tranSum = StackAction(AuthorityKey -> NormalUser) { implicit request =>
+    Ok(html.tranSum(None, sumQueryForm))
+  }
+
+  def tranSumPost = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
+    sumQueryForm.bindFromRequest.fold(
+      formWithErrors => Future.successful(BadRequest("未知错误")),
+      date => tranSumLsService.get(request.session.get("userName").getOrElse(""), date)
+        .map(p => Ok(html.tranSum(p, sumQueryForm)))
+    )
   }
 
 
@@ -71,7 +82,7 @@ class Tran @Inject()(protected val accountService: AccountService, protected val
   def exportPost = AsyncStack(AuthorityKey -> NormalUser) { implicit request =>
     queryForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest(html.export(List[TranLS](), formWithErrors))),
-      formQuery => tranService.listAll(formQuery.date, formQuery.orderId).map(p => {
+      formQuery => tranService.listAll(request.session.get("userName").getOrElse(""), formQuery.date, formQuery.orderId).map(p => {
         val oututStream = new ByteArrayOutputStream()
         val workbook = Workbook {
           Set(Sheet("日明细") {

@@ -28,23 +28,23 @@ class TranSumServiceImp @Inject()(protected val dbConfigProvider: DatabaseConfig
   private class TranLsSumTable(tag: Tag) extends Table[TranSumLs](tag, "TRAN_LS_SUM") {
     def merchantNo = column[String]("merchantNo", O.PrimaryKey)
 
-    def tranCount = column[Int]("tranCount")
+    def tranCount = column[Option[Int]]("tranCount",O.Default(None))
 
-    def tranFee = column[Double]("tranFee")
+    def tranFee = column[Option[Double]]("tranFee")
 
-    def tranAmt = column[Double]("tranAmt")
+    def tranAmt = column[Option[Double]]("tranAmt")
 
-    def tranAmt1 = column[Double]("tranAmt1")
+    def tranAmt1 = column[Option[Double]]("tranAmt1")
 
-    def tranAmt2 = column[Double]("tranAmt2")
+    def tranAmt2 = column[Option[Double]]("tranAmt2")
 
-    def tranAmt3 = column[Double]("tranAmt3")
+    def tranAmt3 = column[Option[Double]]("tranAmt3")
 
-    def tranAmt4 = column[Double]("tranAmt4")
+    def tranAmt4 = column[Option[Double]]("tranAmt4")
 
-    def tranAmt5 = column[Double]("tranAmt5")
+    def tranAmt5 = column[Option[Double]]("tranAmt5")
 
-    def tranAmt6 = column[Double]("tranAmt6")
+    def tranAmt6 = column[Option[Double]]("tranAmt6")
 
     def tranDate = column[String]("tranDate", O.PrimaryKey)
 

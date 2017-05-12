@@ -1095,3 +1095,20 @@ option{
 }
 
 /* End 分页*/
+
+/*汇总查询条件*/
+.summary li{
+    cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+    .chart-bar{
+        margin: 30px auto 30px;
+    }
+    .check p input{
+        font-size: 14px;
+    }
+    .check p span{
+        line-height: 32px;
+    }
+}
+/* End 汇总查询条件*/

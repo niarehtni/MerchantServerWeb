@@ -15,9 +15,9 @@ import scala.concurrent.Future
   */
 @ImplementedBy(classOf[TranServiceImpl])
 trait TranService {
-  def listAll(tranDate: String, orderId: String): Future[List[TranLS]]
-  def listAll(tranDate:String,orderId:String,index:Int):Future[List[TranLS]]
-  def listCount(tranDate: String, orderId: String):Future[Int]
+  def listAll(merchantNo:String,tranDate: String, orderId: String): Future[List[TranLS]]
+  def listAll(merchantNo:String,tranDate:String,orderId:String,index:Int):Future[List[TranLS]]
+  def listCount(merchantNo:String, tranDate: String, orderId: String):Future[Int]
 }
 
 
@@ -53,15 +53,15 @@ class TranServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigPr
     def * = (merchantNo, terminalNo, tranAmt, tranDate, tranTime, slafAmt, feeAmt, rrn,cardNo, channel,fileDate) <> (TranLS.tupled, TranLS.unapply)
   }
 
-  override def listAll(tranDate: String, orderId: String): Future[List[TranLS]] = {
-    db.run(tranLs.filter(p => p.tranDate === tranDate || p.rrn === orderId).result.map(_.toList))
+  override def listAll(merchantNo:String,tranDate: String, orderId: String): Future[List[TranLS]] = {
+    db.run(tranLs.filter(p => (p.tranDate === tranDate || p.rrn === orderId) && p.merchantNo === merchantNo ).result.map(_.toList))
   }
 
-  override def listAll(tranDate: String, orderId: String, index: Int): Future[List[TranLS]] = {
-    db.run(tranLs.filter(p=> p.tranDate === tranDate || p.rrn === orderId).sortBy(_.merchantNo).drop(index * 10).take(10).result.map(_.toList))
+  override def listAll(merchantNo:String, tranDate: String, orderId: String, index: Int): Future[List[TranLS]] = {
+    db.run(tranLs.filter(p=> (p.tranDate === tranDate || p.rrn === orderId) && p.merchantNo === merchantNo).sortBy(_.merchantNo).drop(index * 10).take(10).result.map(_.toList))
   }
 
-  override def listCount(tranDate: String, orderId: String): Future[Int] = {
-    db.run(tranLs.filter(p => p.tranDate === tranDate || p.rrn === orderId).length.result)
+  override def listCount(merchantNo:String, tranDate: String, orderId: String): Future[Int] = {
+    db.run(tranLs.filter(p => (p.tranDate === tranDate || p.rrn === orderId) && p.merchantNo === merchantNo).length.result)
   }
 }

@@ -1,6 +1,23 @@
-@(tranls: Option[model.TranSumLs])(implicit flash: Flash, session: play.api.mvc.Session)
+@(tranls: Option[model.TranSumLs], form: Form[String])(implicit flash: Flash, session: play.api.mvc.Session)
 
 @main("交易汇总") {
+
+    @helper.form(routes.Tran.tranSumPost, 'id -> "from") {
+        <div class="check">
+            <p>
+                <span>日期查询</span>
+                <input id="date" name="date" class="text" type="text" placeholder="如20150101">
+            </p>
+            <p>
+                <button type="submit">查询</button>
+            </p>
+        </div>
+    }
+
+    <div class="chart-bar"><!--折线图表-->
+        <canvas id="myChart"></canvas>
+    </div>
+
     <div class="summary">
         <ul>
             <li class="active">总金额：  @if(tranls.isDefined) {
@@ -13,9 +30,6 @@
                 @tranls.get.TranFee
             } 元</li>
         </ul>
-    </div>
-    <div class="chart-bar"><!--折线图表-->
-        <canvas id="myChart"></canvas>
     </div>
 
     <script>
